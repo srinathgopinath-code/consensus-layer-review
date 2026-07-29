@@ -1,0 +1,27 @@
+=== Residual hallucination prob P(>=k) — majority k=ceil(0.6N) ===
+per-model q=0.2
+N\rho |    0.00 |    0.05 |    0.15 |    0.30 |    0.50
+N=3  (k=2 ) | 1.0e-01 | 1.2e-01 | 1.4e-01 | 1.6e-01 | 1.8e-01
+N=5  (k=3 ) | 5.8e-02 | 7.9e-02 | 1.1e-01 | 1.5e-01 | 1.8e-01
+N=7  (k=5 ) | 4.7e-03 | 1.4e-02 | 4.1e-02 | 8.2e-02 | 1.3e-01
+N=9  (k=6 ) | 3.1e-03 | 1.3e-02 | 4.4e-02 | 9.0e-02 | 1.4e-01
+N=15 (k=9 ) | 7.8e-04 | 1.1e-02 | 4.8e-02 | 1.0e-01 | 1.5e-01
+N=25 (k=15) | 1.4e-05 | 3.9e-03 | 3.6e-02 | 9.1e-02 | 1.4e-01
+N=51 (k=31) | 2.3e-10 | 9.3e-04 | 2.5e-02 | 8.0e-02 | 1.4e-01
+
+=== Correlation FLOOR  P(theta>=0.6) as N->inf (independent of tiers) ===
+rho=0.05: floor=1.447e-04
+rho=0.15: floor=1.971e-02
+rho=0.30: floor=7.558e-02
+rho=0.50: floor=1.335e-01
+
+=== n-tier stacking: independent-tiers vs correlated-tiers (per-tier residual e) ===
+n=1: independent-tiers=1.14e-01   correlated(c=0.10)=1.14e-01
+n=2: independent-tiers=1.30e-02   correlated(c=0.10)=2.32e-02
+n=3: independent-tiers=1.49e-03   correlated(c=0.10)=1.28e-02
+n=4: independent-tiers=1.70e-04   correlated(c=0.10)=1.16e-02
+
+=== Monte-Carlo cross-check  N=7,k=5,rho=0.3 ===
+analytical=8.2351e-02   monte-carlo=8.2354e-02   rel.diff=0.00%
+
+saved fig_residual.png

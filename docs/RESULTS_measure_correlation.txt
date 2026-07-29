@@ -1,0 +1,46 @@
+
+=== measure_correlation report ===
+items=240  models(N)=5  match=line3  k=3  alpha=0.6
+models: claude-y, gemini-z, gpt-x, llama-w, mistral-v
+FP slots (candidate hallucinations)=272  FN slots (ground-truth findings)=488
+
+-- marginal per-model hallucination rate (on spurious slots) --
+   claude-y             0.386
+   gemini-z             0.349
+   gpt-x                0.397
+   llama-w              0.290
+   mistral-v            0.324
+-- marginal per-model MISS rate (on ground-truth findings) --
+   claude-y             0.268
+   gemini-z             0.266
+   gpt-x                0.268
+   llama-w              0.227
+   mistral-v            0.248
+
+-- inter-model error correlation (mean pairwise phi) --
+   rho_FP (item-level, unbiased) =0.195
+   rho_FN (slot-level, unbiased) =0.102   rho_FN (item-level)=0.131
+   rho_FP (slot-level, conditioned on >=1 report; biased low)=-0.047
+   rho_FP (item, tetrachoric)=0.312   rho_FN (slot, tetrachoric)=0.179
+
+-- beta-binomial population fit (item-level hallucination side) --
+   q(mean per-model)=0.345  rho(pop)=0.190  implied floor P(theta>=0.6)=1.349e-01
+
+-- consolidated residuals at k=3, tiers=1 --
+   residual hallucination (FP)=1.985e-01   residual miss (FN)=8.381e-01
+
+-- consolidation sweep over k (tiers=1) --
+   k= 1: residual FP=1.000e+00  residual FN=3.074e-01
+   k= 2: residual FP=4.743e-01  residual FN=6.230e-01
+   k= 3: residual FP=1.985e-01  residual FN=8.381e-01
+   k= 4: residual FP=5.882e-02  residual FN=9.570e-01
+   k= 5: residual FP=1.471e-02  residual FN=9.959e-01
+
+-- bootstrap 95% CI on implied floor (300 resamples, item-clustered) --
+   [7.233e-02, 1.888e-01]
+
+-- rho_FP by stratum, item-level unbiased (tests prediction P2) --
+   expert         rho_FP=0.221  (items=60)
+   halluc_dep     rho_FP=0.318  (items=60)
+   historical     rho_FP=0.089  (items=60)
+   seeded         rho_FP=0.157  (items=60)
